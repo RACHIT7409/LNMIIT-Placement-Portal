@@ -13,12 +13,11 @@ dotenv.config();
 connectDB();
 
 const app = express();
-
 app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://your-frontend-name.vercel.app",
+      "https://lnmiit-placement-portal.vercel.app",
     ],
     credentials: true,
   })
