@@ -1,10 +1,6 @@
 node_modules
 .env
+.DS_Store
 dist
 build
-logs
-*.log
-
-frontend/node_modules
-backend/node_modules
-frontend/dist
+.vscode
