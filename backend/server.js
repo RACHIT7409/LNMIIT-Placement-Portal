@@ -13,20 +13,23 @@ dotenv.config();
 connectDB();
 
 const app = express();
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.FRONTEND_URL,
+].filter(Boolean);
 
 app.use(
   cors({
-    origin: true,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS not allowed"));
+      }
+    },
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Credentials", "true");
-  next();
-});
 
 app.use(express.json());
 
@@ -41,10 +44,6 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-app.get("/api/test", (req, res) => {
-  res.json({ ok: true });
-});
-
 app.use("/api/auth", authRoutes);
 app.use("/api/companies", companyRoutes);
 app.use("/api/resources", resourceRoutes);
@@ -53,6 +52,11 @@ app.use("/api/stats", statsRoutes);
 app.use("/api/placements", placementRoutes);
 
 const PORT = process.env.PORT || 5000;
+console.log("Stats route loaded");
+
+app.get("/api/test", (req, res) => {
+  res.json({ ok: true });
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
