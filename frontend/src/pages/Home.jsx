@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import API from "../api/axios";
 
@@ -115,129 +115,134 @@ const Home = () => {
 
   return (
     <div className="min-h-[calc(100vh-80px)] bg-gradient-to-b from-blue-50 via-white to-gray-50">
-      <section className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
-          <div>
-            <p className="inline-block bg-blue-100 text-blue-700 px-4 py-1 rounded-full text-sm font-medium mb-4 shadow-sm">
+      {/* Hero Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-14 lg:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 items-center">
+          <div className="text-center md:text-left">
+            <p className="inline-block bg-blue-100 text-blue-700 px-3 sm:px-4 py-1 rounded-full text-xs sm:text-sm font-medium mb-4 shadow-sm">
               LNMIIT Placement Preparation Platform
             </p>
 
-            <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight mb-5 sm:mb-6">
               Prepare smarter, crack placements with confidence.
             </h1>
 
-            <p className="text-lg text-gray-600 mb-8 leading-8">
+            <p className="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 leading-7 sm:leading-8 max-w-2xl mx-auto md:mx-0">
               Explore company-wise questions, browse notes and resources,
               learn from interview experiences, and build your placement journey
               in one organized portal.
             </p>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <button
                 onClick={() => handleProtectedNavigation("/companies")}
-                className="bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold shadow-md hover:bg-blue-800 hover:scale-105 transition duration-300"
+                className="w-full sm:w-auto bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold shadow-md hover:bg-blue-800 hover:scale-105 transition duration-300"
               >
                 Explore Companies
               </button>
 
               <button
                 onClick={() => handleProtectedNavigation("/resources")}
-                className="border border-blue-700 text-blue-700 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 hover:scale-105 transition duration-300"
+                className="w-full sm:w-auto border border-blue-700 text-blue-700 px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 hover:scale-105 transition duration-300"
               >
                 Explore Resources
               </button>
             </div>
           </div>
 
-          <div className="relative">
-            <div className="absolute -top-4 -left-4 w-28 h-28 bg-blue-200 rounded-full blur-2xl opacity-50"></div>
-            <div className="absolute -bottom-6 -right-4 w-36 h-36 bg-purple-200 rounded-full blur-2xl opacity-50"></div>
+          <div className="relative order-first md:order-none">
+            <div className="absolute -top-4 -left-4 w-20 sm:w-28 h-20 sm:h-28 bg-blue-200 rounded-full blur-2xl opacity-50"></div>
+            <div className="absolute -bottom-6 -right-4 w-24 sm:w-36 h-24 sm:h-36 bg-purple-200 rounded-full blur-2xl opacity-50"></div>
 
             <div className="bg-white rounded-3xl shadow-xl border overflow-hidden hover:shadow-2xl transition duration-300">
               <img
                 src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop"
                 alt="Students preparing together"
-                className="w-full h-[380px] object-cover hover:scale-105 transition duration-500"
+                className="w-full h-[240px] sm:h-[300px] lg:h-[380px] object-cover hover:scale-105 transition duration-500"
               />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-6 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+      {/* Stats */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-10 sm:pb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6">
           {statCards.map((item, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl shadow border p-6 text-center hover:-translate-y-1 hover:shadow-xl hover:scale-[1.01] transition duration-300"
+              className="bg-white rounded-2xl shadow border p-4 sm:p-6 text-center hover:-translate-y-1 hover:shadow-xl hover:scale-[1.01] transition duration-300"
             >
-              <h3 className="text-3xl font-extrabold text-blue-700 mb-2">
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-blue-700 mb-2">
                 {item.value}
               </h3>
-              <p className="text-gray-600 font-medium">{item.label}</p>
+              <p className="text-sm sm:text-base text-gray-600 font-medium">
+                {item.label}
+              </p>
             </div>
           ))}
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-6 py-8">
-        <div className="text-center mb-10">
-          <h2 className="text-4xl font-extrabold text-gray-900 mb-3">
+      {/* Features */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+        <div className="text-center mb-8 sm:mb-10">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">
             Everything you need for placements
           </h2>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-600 text-base sm:text-lg">
             A single place for practice, revision, and interview readiness.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
+          {featureCards.map((card, index) => (
+            <div
+              key={index}
+              className="group bg-white rounded-3xl shadow-lg border overflow-hidden hover:-translate-y-3 hover:shadow-2xl transition duration-300 flex flex-col"
+            >
+              <img
+                src={card.image}
+                alt={card.title}
+                className="w-full h-48 sm:h-56 object-cover group-hover:scale-105 transition duration-500"
+              />
 
-{featureCards.map((card, index) => (
-  <div
-    key={index}
-    className="group bg-white rounded-3xl shadow-lg border overflow-hidden hover:-translate-y-3 hover:shadow-2xl transition duration-300 flex flex-col"
-  >
-    <img
-      src={card.image}
-      alt={card.title}
-      className="w-full h-56 object-cover group-hover:scale-105 transition duration-500"
-    />
+              <div className="p-5 sm:p-6 flex flex-col justify-between flex-1">
+                <div>
+                  <h3 className="text-xl sm:text-2xl font-bold mb-3">
+                    {card.title}
+                  </h3>
 
-    <div className="p-6 flex flex-col justify-between flex-1">
-      <div>
-        <h3 className="text-2xl font-bold mb-3">{card.title}</h3>
+                  <p className="text-gray-600 leading-6 sm:leading-7 mb-5 text-sm sm:text-base">
+                    {card.description}
+                  </p>
+                </div>
 
-        <p className="text-gray-600 leading-7 mb-5">
-          {card.description}
-        </p>
-      </div>
-
-      <button
-        onClick={() => handleProtectedNavigation(card.path)}
-        className="mt-auto bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-800 hover:scale-105 transition duration-300 w-fit"
-      >
-        Open →
-      </button>
-    </div>
-  </div>
-))}
-
-
+                <button
+                  onClick={() => handleProtectedNavigation(card.path)}
+                  className="mt-auto w-full sm:w-fit bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-800 hover:scale-105 transition duration-300"
+                >
+                  Open →
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-2 gap-10 items-center">
+      {/* Why Useful */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-10 items-center">
           <div className="bg-white rounded-3xl shadow-xl border overflow-hidden hover:shadow-2xl transition duration-300">
             <img
               src="https://images.unsplash.com/photo-1513258496099-48168024aec0?q=80&w=1200&auto=format&fit=crop"
               alt="Placement journey"
-              className="w-full h-[350px] object-cover hover:scale-105 transition duration-500"
+              className="w-full h-[240px] sm:h-[300px] lg:h-[350px] object-cover hover:scale-105 transition duration-500"
             />
           </div>
 
           <div>
-            <h2 className="text-4xl font-extrabold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4 text-center md:text-left">
               Why this portal is useful
             </h2>
             <div className="space-y-4">
@@ -252,7 +257,9 @@ const Home = () => {
                   key={index}
                   className="bg-white border shadow-sm rounded-2xl p-4 hover:translate-x-2 hover:shadow-md transition duration-300"
                 >
-                  <p className="text-gray-700 font-medium">{point}</p>
+                  <p className="text-gray-700 font-medium text-sm sm:text-base">
+                    {point}
+                  </p>
                 </div>
               ))}
             </div>
@@ -260,30 +267,31 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-6 pb-16">
-        <div className="bg-gradient-to-r from-blue-700 to-indigo-700 rounded-3xl text-white p-10 shadow-xl">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <h2 className="text-4xl font-extrabold mb-4">
+      {/* CTA */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-12 sm:pb-16">
+        <div className="bg-gradient-to-r from-blue-700 to-indigo-700 rounded-3xl text-white p-6 sm:p-8 lg:p-10 shadow-xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center">
+            <div className="text-center md:text-left">
+              <h2 className="text-3xl sm:text-4xl font-extrabold mb-4">
                 Start your placement journey today
               </h2>
-              <p className="text-lg text-blue-100 leading-8">
+              <p className="text-base sm:text-lg text-blue-100 leading-7 sm:leading-8">
                 Build consistency, practice company questions, and stay ready
                 for interviews with one smart portal.
               </p>
             </div>
 
-            <div className="flex md:justify-end gap-4 flex-wrap">
+            <div className="flex flex-col sm:flex-row md:justify-end gap-4">
               <button
                 onClick={() => handleProtectedNavigation("/companies")}
-                className="bg-white text-blue-700 px-6 py-3 rounded-xl font-semibold hover:scale-105 hover:bg-gray-100 transition duration-300"
+                className="w-full sm:w-auto bg-white text-blue-700 px-6 py-3 rounded-xl font-semibold hover:scale-105 hover:bg-gray-100 transition duration-300"
               >
                 Explore Companies
               </button>
 
               <button
                 onClick={() => handleProtectedNavigation("/resources")}
-                className="border border-white text-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-blue-700 hover:scale-105 transition duration-300"
+                className="w-full sm:w-auto border border-white text-white px-6 py-3 rounded-xl font-semibold hover:bg-white hover:text-blue-700 hover:scale-105 transition duration-300"
               >
                 Explore Resources
               </button>
