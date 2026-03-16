@@ -1,5 +1,8 @@
 # 🚀 LNMIIT Placement Portal
 
+<img src="https://img.shields.io/badge/License-MIT-green.svg"/>
+
+
 <p align="center">
 
 A full-stack placement preparation platform designed to help students prepare smarter and track placement progress in one centralized portal.
