@@ -2,7 +2,6 @@ const Dashboard = () => {
   const user = JSON.parse(localStorage.getItem("user"));
 
   const cards = [
- 
     {
       title: "Resources",
       value: "Available",
@@ -19,17 +18,17 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-[calc(100vh-80px)] bg-gradient-to-b from-blue-50 via-white to-gray-50">
-      <div className="max-w-7xl mx-auto px-6 py-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
         <div className="mb-10">
-          <h2 className="text-4xl font-extrabold text-gray-900 mb-2">
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-2">
             Welcome back, {user?.name || "Student"}
           </h2>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-600 text-base sm:text-lg">
             Track your preparation, explore resources, and stay placement-ready.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
           {cards.map((card, index) => (
             <div
               key={index}
@@ -50,16 +49,24 @@ const Dashboard = () => {
           ))}
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="group bg-white rounded-3xl shadow-md border p-6 hover:-translate-y-2 hover:shadow-2xl transition duration-300">
             <h3 className="text-2xl font-bold mb-4 group-hover:text-blue-700 transition">
               Quick Access
             </h3>
             <div className="space-y-3 text-gray-700">
-              <p className="hover:translate-x-1 transition">• Track placement statistics</p>
-              <p className="hover:translate-x-1 transition">• Explore company preparation pages</p>
-              <p className="hover:translate-x-1 transition">• Browse resources and notes</p>
-              <p className="hover:translate-x-1 transition">• Read and submit interview experiences</p>
+              <p className="hover:translate-x-1 transition">
+                • Track placement statistics
+              </p>
+              <p className="hover:translate-x-1 transition">
+                • Explore company preparation pages
+              </p>
+              <p className="hover:translate-x-1 transition">
+                • Browse resources and notes
+              </p>
+              <p className="hover:translate-x-1 transition">
+                • Read and submit interview experiences
+              </p>
             </div>
           </div>
 
@@ -68,10 +75,18 @@ const Dashboard = () => {
               Placement Focus
             </h3>
             <div className="space-y-3 text-gray-700">
-              <p className="hover:translate-x-1 transition">• Company-specific preparation</p>
-              <p className="hover:translate-x-1 transition">• Centralized study material</p>
-              <p className="hover:translate-x-1 transition">• Real student experiences</p>
-              <p className="hover:translate-x-1 transition">• Admin-managed content</p>
+              <p className="hover:translate-x-1 transition">
+                • Company-specific preparation
+              </p>
+              <p className="hover:translate-x-1 transition">
+                • Centralized study material
+              </p>
+              <p className="hover:translate-x-1 transition">
+                • Real student experiences
+              </p>
+              <p className="hover:translate-x-1 transition">
+                • Admin-managed content
+              </p>
             </div>
           </div>
         </div>

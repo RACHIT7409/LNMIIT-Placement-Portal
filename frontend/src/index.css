@@ -10,3 +10,24 @@ body {
 * {
   box-sizing: border-box;
 }
+
+
+
+
+
+
+.spinner {
+  margin: auto;
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #2563eb;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

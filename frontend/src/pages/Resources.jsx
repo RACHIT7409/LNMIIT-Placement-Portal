@@ -1,18 +1,32 @@
 import { useEffect, useMemo, useState } from "react";
 import API from "../api/axios";
+import Loader from "../components/Loader";
 
 const Resources = () => {
   const [resources, setResources] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const fetchResources = async () => {
     try {
-      const { data } = await API.get("/resources");
+      setLoading(true);
+      setError("");
+
+      const { data } = await API.get("/resources", {
+        timeout: 30000,
+      });
+
       setResources(data.resources || []);
     } catch (err) {
-      setError(err.response?.data?.message || "Failed to fetch resources");
+      if (err.code === "ECONNABORTED") {
+        setError("Request timed out. Please refresh and try again.");
+      } else {
+        setError(err.response?.data?.message || "Failed to fetch resources");
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -21,7 +35,12 @@ const Resources = () => {
   }, []);
 
   const categories = useMemo(() => {
-    return ["All", ...new Set(resources.map((resource) => resource.category).filter(Boolean))];
+    return [
+      "All",
+      ...new Set(
+        resources.map((resource) => resource.category).filter(Boolean)
+      ),
+    ];
   }, [resources]);
 
   const filteredResources = resources.filter((resource) => {
@@ -29,7 +48,7 @@ const Resources = () => {
       selectedCategory === "All" || resource.category === selectedCategory;
 
     const matchesSearch =
-      resource.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      resource.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       resource.description?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       resource.tags?.join(" ").toLowerCase().includes(searchTerm.toLowerCase()) ||
       resource.category?.toLowerCase().includes(searchTerm.toLowerCase());
@@ -39,10 +58,22 @@ const Resources = () => {
 
   return (
     <div className="min-h-[calc(100vh-80px)] bg-gradient-to-b from-blue-50 via-white to-gray-50">
-      <div className="max-w-6xl mx-auto p-8">
-        <h2 className="text-4xl font-extrabold mb-6">Resources & Notes</h2>
+      <div className="max-w-6xl mx-auto p-4 sm:p-6 lg:p-8">
+        <h2 className="text-3xl sm:text-4xl font-extrabold mb-6">
+          Resources & Notes
+        </h2>
 
-        {error && <p className="text-red-600 mb-4">{error}</p>}
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-700 rounded-2xl px-4 py-3 mb-6">
+            <p className="font-medium">{error}</p>
+            <button
+              onClick={fetchResources}
+              className="mt-3 inline-block bg-red-600 text-white px-4 py-2 rounded-xl font-semibold hover:bg-red-700 transition"
+            >
+              Retry
+            </button>
+          </div>
+        )}
 
         <div className="bg-white rounded-3xl shadow border p-4 mb-8 grid md:grid-cols-2 gap-4">
           <input
@@ -66,10 +97,14 @@ const Resources = () => {
           </select>
         </div>
 
-        {filteredResources.length === 0 ? (
-          <p className="text-gray-600">No matching resources found.</p>
+        {loading ? (
+          <Loader text="Loading resources... Please wait" />
+        ) : filteredResources.length === 0 ? (
+          <div className="bg-white rounded-3xl shadow border p-8 text-center">
+            <p className="text-gray-600 text-lg">No matching resources found.</p>
+          </div>
         ) : (
-         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredResources.map((resource) => (
               <div
                 key={resource._id}
