@@ -38,7 +38,7 @@ const Login = () => {
 
       setMessage("Login successful!");
       navigate("/");
-      window.location.reload();
+      
     } catch (err) {
       if (err.code === "ECONNABORTED") {
         setError("Login request timed out. Please try again.");

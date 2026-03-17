@@ -38,8 +38,8 @@ const Register = () => {
       localStorage.setItem("user", JSON.stringify(data.user));
 
       setMessage("Registration successful!");
-      navigate("/dashboard");
-      window.location.reload();
+      navigate("/");
+     
     } catch (err) {
       if (err.code === "ECONNABORTED") {
         setError("Registration request timed out. Please try again.");
