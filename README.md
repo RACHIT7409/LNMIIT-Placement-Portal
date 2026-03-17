@@ -313,6 +313,17 @@ git push origin feature-name
 5. Open a Pull Request
 
 ---
+## when you update your code use this to push again your code into github 
+```
+git add .
+git commit -m "Add loading state to add experience, login, and register pages"
+git pull origin main --rebase
+git push origin main
+```
+Now your deployment will:
+--Auto-update on Vercel (frontend) ✅
+--Auto-update on Render (backend) ✅
+
 
 # 📜 License
  
